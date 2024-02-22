@@ -9,9 +9,9 @@ Apex CRM is a comprehensive Customer Relationship Management (CRM) application b
 -   Organization Management: Track and manage customer organizations.
 -   User Management: Manage user profiles and permissions.
 -   Contact Management: Maintain contact information for organization contacts.
--   Quote Management: Create and manage quotes for potential deals.
--   Invoice Management: Generate and manage invoices for completed deals.
--   Activity Tracking: Monitor user activities and tasks.
+
+
+
 -   Deal Management: Track the sales process from lead to close.
 
 ## Installation
@@ -28,7 +28,7 @@ Apex CRM is a comprehensive Customer Relationship Management (CRM) application b
 1. **Clone the Repository**
 
     ```
-    git clone https://github.com/Peter-Vulpes/CRM_basic.git
+    git clone https://github.com/Tedmyles/laravel_breeze/submission
     ```
 
 2. **Install Dependencies**
@@ -44,7 +44,7 @@ Apex CRM is a comprehensive Customer Relationship Management (CRM) application b
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
-    DB_DATABASE=apex_crm
+    DB_DATABASE=laravel_breeze
     DB_USERNAME=root
     DB_PASSWORD=
     ```
@@ -74,11 +74,7 @@ The CRM application includes the following migrations:
 -   Organizations Table
 -   Users Table
 -   Contacts Table
--   Quotes Table
--   Invoices Table
--   Quote_items Table
--   Invoice_items Table
--   Activities Table
+-   
 -   Deals Table
 -   Deal_stages Table
 
