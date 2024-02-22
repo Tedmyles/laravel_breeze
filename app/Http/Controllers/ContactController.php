@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Organization; 
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -25,11 +24,12 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $organizations = Organization::all(); // Retrieve all organizations
-        return view('contact.create', compact('organizations'));
-    }
+        //create the contact
+        //pass on the organization
+        $org = OrganizationController::all();
+        return view('contact.create', ['org' => $org]);
 
-    
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -95,22 +95,20 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-{
-    $contact = Contact::findOrFail($id);
-
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required',
-        'organization_id' => 'required|exists:organizations,id',
-    ]);
-
-    $contact->update($request->all());
-
-    return redirect()->route('contacts.index')->with('success', 'Contact updated successfully.');
-}
-
+    public function update(Request $request, contact $contact)
+    {
+        //update contact using the request by first validating the request
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'job_title' => 'required',
+            'organization_id' => 'required',
+        ]);
+        //store the request
+        $contact->update($request->all());
+    }
 
     /**
      * Remove the specified resource from storage.

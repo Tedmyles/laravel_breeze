@@ -1,38 +1,40 @@
-<!-- resources/views/contacts/index.blade.php -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
 @extends('layouts.base')
 @section('content')
     {{-- use flowbite for the ui --}}
     <div class="relative overflow-x-auto">
-        <div class="container">
-            <div class="mb-3">
-                <a href="{{ route('contacts.create') }}" class="btn btn-primary">Create New Contact</a>
-            </div>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Contact name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Email
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Phone
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Organization
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Actions
-                        </th>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Contact name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Phone
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Organization
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- loop through the contacts and display them -->
+                <!--check if the contacts is not empty -->
+                <!--use the isset() function to check if the contacts variable is not empty -->
+                {{-- @if (isset($contacts)) --}}
+                @if ($contacts->isEmpty())
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4" colspan="4">
+                            No contacts found.
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @forelse ($contacts as $contact)
-                        <tr class="bg-white border-b">
+                @else
+                    @foreach ($contacts as $contact)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
+                                {{--  display contact first_name from the fillables --}}
                                 {{ $contact->first_name }} {{ $contact->last_name }}
                             </td>
                             <td class="px-6 py-4">
@@ -42,17 +44,13 @@
                                 {{ $contact->phone }}
                             </td>
                             <td class="px-6 py-4">
+                                {{-- contact organization --}}
                                 {{ $contact->organization->name }}
                             </td>
-                    
                         </tr>
-                    @empty
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-4" colspan="5">No contacts found.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
     </div>
 @endsection
